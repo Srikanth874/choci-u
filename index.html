@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chocolate Day 🍫</title>
+
+<style>
+  body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(135deg,#f3d6c6,#e6b8a2);
+    font-family: 'Segoe UI', sans-serif;
+    overflow:hidden;
+  }
+
+  /* Falling items */
+  .fall{
+    position:fixed;
+    top:-10%;
+    font-size:22px;
+    animation: fall linear infinite;
+    opacity:0.8;
+    pointer-events:none;
+  }
+
+  @keyframes fall{
+    to{
+      transform: translateY(120vh);
+    }
+  }
+
+  .card{
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(8px);
+    border-radius:22px;
+    padding:32px;
+    max-width:360px;
+    width:90%;
+    text-align:center;
+    box-shadow:0 20px 40px rgba(0,0,0,0.25);
+    z-index:2;
+    animation: fadeIn 1s ease;
+  }
+
+  h1{
+    margin:0;
+    font-size:28px;
+    color:#5a2d1a;
+  }
+
+  p{
+    font-size:16px;
+    margin:16px 0 26px;
+    color:#6b3a24;
+    line-height:1.4;
+  }
+
+  button{
+    background: linear-gradient(135deg,#a45a3d,#6b3a24);
+    border:none;
+    padding:12px 24px;
+    border-radius:30px;
+    color:#fff;
+    font-size:16px;
+    cursor:pointer;
+    box-shadow:0 8px 18px rgba(0,0,0,0.25);
+    transition: transform 0.25s;
+  }
+
+  button:hover{
+    transform: scale(1.06);
+  }
+
+  img{
+    width:100%;
+    border-radius:16px;
+    margin-top:22px;
+    display:none;
+    animation: reveal 0.9s ease;
+  }
+
+  @keyframes fadeIn{
+    from{opacity:0; transform: translateY(18px);}
+    to{opacity:1; transform: translateY(0);}
+  }
+
+  @keyframes reveal{
+    from{opacity:0; transform: scale(0.8);}
+    to{opacity:1; transform: scale(1);}
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Falling chocolates & hearts -->
+<script>
+  const symbols = ["🍫","🤎"];
+  for(let i=0;i<30;i++){
+    const s = document.createElement("div");
+    s.className = "fall";
+    s.innerText = symbols[Math.floor(Math.random()*symbols.length)];
+    s.style.left = Math.random()*100 + "vw";
+    s.style.animationDuration = (5 + Math.random()*6) + "s";
+    s.style.fontSize = (16 + Math.random()*18) + "px";
+    s.style.animationDelay = Math.random()*5 + "s";
+    document.body.appendChild(s);
+  }
+</script>
+
+<div class="card">
+  <h1 id="title">Happy Chocolate Day 🍫</h1>
+  <p id="message">
+    A little sweetness just for you 🤎  
+    <br>Tap the button to get your chocolate 🍫
+  </p>
+
+  <button id="btn" onclick="nextStep()">Get Your Chocolate 🍫</button>
+
+  <!-- 🔴 Replace with your image -->
+  <img id="photo" src="myphoto.jpg" alt="Chocolate Surprise">
+</div>
+
+<script>
+  function nextStep(){
+    document.getElementById("title").innerText = "Just for You 🤎";
+    document.getElementById("message").innerText =
+      "I know you don’t like chocolates… 😌\nBut this one is irresistible 🍫🤎";
+
+    document.getElementById("photo").style.display = "block";
+    document.getElementById("btn").style.display = "none";
+  }
+</script>
+
+</body>
+</html>
